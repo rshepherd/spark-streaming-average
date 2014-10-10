@@ -1,4 +1,4 @@
-name := "Engagement Metrics"
+name := "Streaming Average"
 
 version := "1.0"
 
