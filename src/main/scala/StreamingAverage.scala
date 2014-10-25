@@ -29,10 +29,10 @@ object StreamingAverage {
     val ctx = new StreamingContext(conf, Seconds(10))
     ctx.checkpoint("./output")
 
-    // Create a windowed stream
+    // Create a stream of visits from the queue
     val stream = ctx.queueStream(queue).map { x =>
       (x.id, x.millis)
-    }.window(Seconds(30), Seconds(10))
+    }
 
     // Update function that will compute state after each dstream ingestion
     val update = (millis: Seq[Long], state: Option[VisitState]) => {
